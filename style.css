@@ -11,9 +11,11 @@ body{
     justify-content: flex-start;
     flex-direction: column;
     align-items: center;
+    background-color: #192a32;
 }
 h1{
     margin: 20px;
+    color: white;
 }
 .container{
     display: grid;
@@ -25,7 +27,7 @@ h1{
 .title{
     grid-column: span 3;
     font-size: 32px;
-    background-color: #f25;
+    background-color: #1f3540;
     padding: 10px;
     color: white;
 }
@@ -36,7 +38,8 @@ h1{
 .box{
     width: 150px;
     height: 150px;
-    background-color: #f25;
+    border-radius: 8px;
+    background-color: #1f3540;
     float: left;
     margin: 5px;
     color: white;
@@ -45,4 +48,46 @@ h1{
 }
 .box:hover{
     background-color: hsl(346, 100%, 40%);
+}
+.gameState{
+    width: 100%;
+    height: 150px;
+    margin: 36px 0  16px;
+    grid-column: span 3;
+    display: flex;
+    column-gap: 16px;
+    justify-content: space-between;
+    padding: 0 12px;
+}
+.gameState div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 16px;
+    width: 100%;
+    border-radius: 8px;
+    padding: 24px 16px;
+    height: fit-content;
+}
+.gameState div span{
+    font-size: 2rem;
+}
+.X-wins{
+    background-color: #31c4be;
+}
+.O-wins{
+    background-color: #f2b237;
+}
+.Draw{
+    background-color: #a8bec9;
+}
+#ResBtn{
+    grid-column: span 3;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    background-color: #a6bcc7;
+    padding: 16px 8px;
+    border-radius: 8px;
+    margin-bottom: 36px;
 }

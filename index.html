@@ -9,7 +9,7 @@
     <body tabindex="0">
       <h1>Tic Tac Toe</h1>
       <div class="container">
-        <div class="title"><span>X O</span> Game</div>
+        <div class="title" id="title"><span>X O</span> Game</div>
         <div class="box" id="item1" onclick="game(this.id)"></div>
         <div class="box" id="item2" onclick="game(this.id)"></div>
         <div class="box" id="item3" onclick="game(this.id)"></div>
@@ -21,6 +21,12 @@
         <div class="box" id="item7" onclick="game(this.id)"></div>
         <div class="box" id="item8" onclick="game(this.id)"></div>
         <div class="box" id="item9" onclick="game(this.id)"></div>
+        <div class="gameState">
+          <div class="X-wins">X wins: <span id="X-wins">0</span></div>
+          <div class="Draw">Draws: <span id="Draw">0</span></div>
+          <div class="O-wins">O wins: <span id="O-wins">0</span></div>
+        </div>
+        <button id="ResBtn">Restart State</button>
       </div>
 
 

@@ -1,8 +1,21 @@
-let title = document.querySelector('.title');
+let XWins = document.getElementById('X-wins')
+let OWins = document.getElementById('O-wins')
+let GameDraw = document.getElementById('Draw')
+let ResBtn = document.getElementById('ResBtn')
+let title = document.getElementById('title')
+
+let X = parseInt(localStorage.getItem('XWins')) || 0;
+let O = parseInt(localStorage.getItem('OWins')) || 0;
+let drawsCount = parseInt(localStorage.getItem('Draws')) || 0;
+
+
+if (XWins) XWins.innerText = X;
+if (OWins) OWins.innerText = O;
+if (GameDraw) GameDraw.innerText = drawsCount;
+
 let turn = 'X';
 let boxes = [];
 let win = false;
-
 function winner(num1,num2,num3){
         title.innerHTML = `'${boxes[num1]}' is the winner`;
         document.getElementById('item'+num1).style.backgroundColor = 'black';
@@ -11,8 +24,18 @@ function winner(num1,num2,num3){
         setInterval(() => {title.innerHTML += '.'},1000);
         setTimeout(() =>{window.location.reload()} ,4000);
         win = true;
+        if(boxes[num1] === 'X'){
+            X += 1;
+            XWins.innerText = X;
+            localStorage.setItem('XWins', X)
+        }
+        else{
+            O += 1;
+            OWins.innerText = O;
+            localStorage.setItem('OWins', O)
+        }
 }
-function winnersituation(){
+function winnerSituation(){
     for(let i = 1 ; i<10;i++){
         boxes[i] = document.getElementById('item'+i).innerHTML
     }
@@ -42,6 +65,9 @@ function winnersituation(){
     }
     else if(!win && boxes.slice(1).every(box => box != '')){
         title.innerHTML = 'The Game is Draw'; 
+        drawsCount += 1;
+        GameDraw.innerText = drawsCount;
+        localStorage.setItem('Draws', drawsCount);
         setInterval(() => {
             title.innerHTML +='.';
         }, 1000);
@@ -56,16 +82,29 @@ function game(id){
     if(!win){
         if(turn === 'X' && element.innerHTML === ''){
             element.innerText = 'X';
+            element.style.background = 'lightgreen';
             title.innerHTML = "O's turn";
             turn = 'O';
         }
         else if(turn === 'O' && element.innerHTML === ''){
             element.innerText = 'O';
+            element.style.background = 'lightblue'
             title.innerHTML = "X's turn";
             turn = 'X';
         }
-        winnersituation();
+        winnerSituation();
     }
-
-    
 }
+ResBtn.addEventListener('click', () => {
+    console.log('Reset button clicked');
+    X = 0;
+    O = 0;
+    drawsCount = 0;
+    XWins.innerText = X;
+    OWins.innerText = O;
+    GameDraw.innerText = drawsCount;
+    localStorage.setItem('XWins', X);
+    localStorage.setItem('OWins', O);
+    localStorage.setItem('Draws', drawsCount);
+    window.location.reload();
+});
